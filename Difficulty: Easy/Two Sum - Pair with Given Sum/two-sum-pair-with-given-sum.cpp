@@ -12,22 +12,18 @@ class Solution {
         // code here
         int n=arr.size();
         
-        sort(arr.begin(),arr.end());
+        unordered_map<int,int> visitedNums;
         
-        int left=0;
-        int right=n-1;
-        
-        while(left<right){
-            int sum=arr[left]+arr[right];
-            if(sum==target){
+        for(int i=0;i<n;i++){
+            int remainingNum=target-arr[i];
+            
+            if(visitedNums.find(remainingNum)!=visitedNums.end()){
                 return true;
-            }else if(sum<target){
-                left++;
-            }else{
-                right--;
             }
+            visitedNums[arr[i]]++;
+            
+            
         }
-        
         return false;
     }
 };
